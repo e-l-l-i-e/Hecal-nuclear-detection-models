@@ -1,10 +1,37 @@
-#create materials
+import openmc
 
+"Notes:"
+"-  units are in seconds, centimeters, and electronvolts."
 
+#step 1: create materials
+uranium = openmc.Material(name="uranium")
+uranium.add_element("u", 1.0, enrichment=80)
+uranium.set_density("g/cm^3", 19)
 
-#create geometry
+air = openmc.Material(name="air")
+air.add_element("N", 0.78)
+air.add_element("O", 0.22)
+air.set_density("g/cm^3", 0.001205)
 
+#step 2: create geometry
+sphere = openmc.Sphere(r=100)
+inside_sphere = -sphere
+outside_sphere = +sphere
 
+zregion = -openmc.ZPlane(5000) & +openmc.ZPlane(-5000)
+yregion = -openmc.YPlane(5000) & +openmc.YPlane(-5000)
+xregion = -openmc.XPlane(5000) & +openmc.XPlane(-5000)
+
+inside_box = outside_sphere & zregion & yregion & xregion
+
+# step 3: combine materials with geometry
+uranium_ball = openmc.Cell()
+uranium_ball.fill = uranium
+uranium_ball.region = inside_sphere
+
+box = openmc.Cell()
+box.fill = air
+box.region = air
 
 #assign simulation settings
 
