@@ -1,0 +1,17 @@
+ ================>     TALLY 2: FLUX_ABSORPTION_TALLY     <=================
+
+ Cell 2
+   Total Material
+     Flux                                 4002.63 +/- 2.42596
+     Absorption Rate                      0.0166954 +/- 1.8308e-05
+     Nu-Fission Rate                      0 +/- 0
+ Cell 1
+   Total Material
+     Flux                                 0.589539 +/- 0.00030375
+     Absorption Rate                      0.0327765 +/- 1.85803e-05
+     Nu-Fission Rate                      0.0797642 +/- 4.31933e-05
+ ====================>     TALLY 1: CURRENT_TALLY     <=====================
+
+ Surface 1
+   Total Material
+     Current                              0.547363 +/- 0.000254923

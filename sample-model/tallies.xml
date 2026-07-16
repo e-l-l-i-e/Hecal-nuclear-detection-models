@@ -1,0 +1,17 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<tallies>
+  <filter id="2" type="cell">
+    <bins>2 1</bins>
+  </filter>
+  <filter id="1" type="surface">
+    <bins>1</bins>
+  </filter>
+  <tally id="2" name="flux_absorption_tally">
+    <filters>2</filters>
+    <scores>flux absorption nu-fission</scores>
+  </tally>
+  <tally id="1" name="current_tally">
+    <filters>1</filters>
+    <scores>current</scores>
+  </tally>
+</tallies>

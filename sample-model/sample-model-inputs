@@ -1,20 +1,22 @@
 import openmc
-
+import matplotlib.pyplot as plt
 "Notes:"
 "-  units are in seconds, centimeters, and electronvolts."
 
 #step 1: create materials
 uranium = openmc.Material(name="uranium")
-uranium.add_element("U", 1.0, enrichment=80)
-uranium.set_density("g/cm^3", 19)
+uranium.add_nuclide("U238", .19, 'wo')
+uranium.add_nuclide("U235", .8, 'wo')
+uranium.add_nuclide("U234", .01, 'wo')
+uranium.set_density("g/cm3", 19)
 
 air = openmc.Material(name="air")
 air.add_element("N", 0.78)
 air.add_element("O", 0.22)
-air.set_density("g/cm^3", 0.001205)
+air.set_density("g/cm3", 0.001205)
 
 materials = openmc.Materials([uranium, air])
-materials.export_to_xml()
+#materials.export_to_xml()
 
 #step 2: create geometry
 sphere = openmc.Sphere(r=1)
@@ -37,20 +39,58 @@ box.region = inside_box
 box.fill = air
 
 geometry = openmc.Geometry([uranium_ball, box])
-geometry.export_to_xml()
+#geometry.export_to_xml()
 
-#assign source
+#step 4: assign simulation settings
+
 settings = openmc.Settings()
 settings.run_mode = "fixed source"
 settings.particles = 10000
+settings.batches = 100
 
 source = openmc.IndependentSource()
 source.space = openmc.stats.Point((0,0,0))
 source.strength = 0.5
 settings.source = source
 
-#step 4: assign simulation settings
-
-
-
 #step 5: determine and generate returns
+
+surfacefilter = openmc.SurfaceFilter(sphere)
+cellfilter = openmc.CellFilter([box, uranium_ball])
+
+
+
+current_tally = openmc.Tally(name="current_tally")
+current_tally.filters = [surfacefilter]
+current_tally.scores = ['current']
+
+flux_absorption_tally = openmc.Tally(name="flux_absorption_tally")
+
+flux_absorption_tally.filters = [cellfilter]
+flux_absorption_tally.scores = ['flux', 'absorption', 'nu-fission']
+
+tallies_object = openmc.Tallies([flux_absorption_tally, current_tally])
+#tallies_object.export_to_xml()
+#settings.export_to_xml()
+
+#return 1: create xml files of materials, geometry, tallies, and settings
+openmc.run()
+
+#return 2: visualize geometry
+
+plot = openmc.Plot()
+plot.basis = 'xz'  # or 'xy', 'yz'
+plot.origin = (0, 0, 0)
+plot.width = (20, 20)  # cm — zoom in near your sphere, not the full 10m box
+plot.pixels = (800, 800)
+plot.color_by = 'material'
+
+plots = openmc.Plots([plot])
+#plots.export_to_xml()
+#openmc.plot_geometry()
+
+sp = openmc.StatePoint('statepoint.100.h5')  # filename depends on batch count
+tally = sp.get_tally(scores=['flux'])
+df = tally.get_pandas_dataframe()
+df.plot(x='flux', y='mean', yerr='std. dev.', kind='bar')
+plt.show()

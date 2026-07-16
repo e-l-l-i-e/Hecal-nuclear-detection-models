@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<plots>
+  <plot id="1" color_by="material" type="slice" basis="xz">
+    <pixels>800 800</pixels>
+    <origin>0 0 0</origin>
+    <width>20 20</width>
+  </plot>
+</plots>
