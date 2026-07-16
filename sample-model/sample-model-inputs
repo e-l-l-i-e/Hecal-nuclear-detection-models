@@ -17,7 +17,7 @@ materials = openmc.Materials([uranium, air])
 materials.export_to_xml()
 
 #step 2: create geometry
-sphere = openmc.Sphere(r=100)
+sphere = openmc.Sphere(r=1)
 inside_sphere = -sphere
 outside_sphere = +sphere
 
@@ -39,8 +39,17 @@ box.fill = air
 geometry = openmc.Geometry([uranium_ball, box])
 geometry.export_to_xml()
 
-#assign simulation settings
+#assign source
 settings = openmc.Settings()
+settings.run_mode = "fixed source"
+settings.particles = 10000
+
+source = openmc.IndependentSource()
+source.space = openmc.stats.Point((0,0,0))
+settings.source = source
+
+#step 4: assign simulation settings
 
 
-#determine and generate returns
+
+#step 5: determine and generate returns
