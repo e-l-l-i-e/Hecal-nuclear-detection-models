@@ -46,6 +46,7 @@ settings.particles = 10000
 
 source = openmc.IndependentSource()
 source.space = openmc.stats.Point((0,0,0))
+source.strength = 0.5
 settings.source = source
 
 #step 4: assign simulation settings
