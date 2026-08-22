@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <geometry>
-  <cell id="1" material="1" region="-1" universe="1"/>
-  <cell id="2" material="2" region="1 -2 3 -4 5 -6 7" universe="1"/>
-  <surface id="1" type="sphere" coeffs="0.0 0.0 0.0 1"/>
-  <surface id="2" type="z-plane" boundary="vacuum" coeffs="5000"/>
-  <surface id="3" type="z-plane" boundary="vacuum" coeffs="-5000"/>
-  <surface id="4" type="y-plane" boundary="vacuum" coeffs="5000"/>
-  <surface id="5" type="y-plane" boundary="vacuum" coeffs="-5000"/>
-  <surface id="6" type="x-plane" boundary="vacuum" coeffs="5000"/>
-  <surface id="7" type="x-plane" boundary="vacuum" coeffs="-5000"/>
+  <cell id="5" material="5" region="-15" universe="3"/>
+  <cell id="6" material="6" region="15 -16 17 -18 19 -20 21" universe="3"/>
+  <surface id="15" type="sphere" coeffs="0.0 0.0 0.0 1"/>
+  <surface id="16" type="z-plane" boundary="vacuum" coeffs="5000"/>
+  <surface id="17" type="z-plane" boundary="vacuum" coeffs="-5000"/>
+  <surface id="18" type="y-plane" boundary="vacuum" coeffs="5000"/>
+  <surface id="19" type="y-plane" boundary="vacuum" coeffs="-5000"/>
+  <surface id="20" type="x-plane" boundary="vacuum" coeffs="5000"/>
+  <surface id="21" type="x-plane" boundary="vacuum" coeffs="-5000"/>
 </geometry>

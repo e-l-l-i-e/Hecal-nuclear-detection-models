@@ -1,12 +1,12 @@
 <?xml version='1.0' encoding='utf-8'?>
 <materials>
-  <material id="1" name="uranium" depletable="true">
+  <material id="5" name="uranium" depletable="true">
     <density value="19" units="g/cm3"/>
     <nuclide name="U238" wo="0.19"/>
     <nuclide name="U235" wo="0.8"/>
     <nuclide name="U234" wo="0.01"/>
   </material>
-  <material id="2" name="air">
+  <material id="6" name="air">
     <density value="0.001205" units="g/cm3"/>
     <nuclide name="N14" ao="0.7771428600000001"/>
     <nuclide name="N15" ao="0.00285714"/>
