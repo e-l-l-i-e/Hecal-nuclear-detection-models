@@ -65,7 +65,6 @@ current_tally.filters = [surfacefilter]
 current_tally.scores = ['current']
 
 flux_absorption_tally = openmc.Tally(name="flux_absorption_tally")
-
 flux_absorption_tally.filters = [cellfilter]
 flux_absorption_tally.scores = ['flux', 'absorption', 'nu-fission']
 

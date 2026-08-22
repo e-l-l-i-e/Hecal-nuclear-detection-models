@@ -1,0 +1,4 @@
+Description: sphere (1m radius) of highly enriched uranium in 100m box of hydrogen
+with a neutron source in the center of the box.
+Return: flux tally, surface current, reaction tally.
+Additional measurement: see how the tallies change with different neutron fluxes. 
